@@ -14,7 +14,7 @@ public class UserBean {
     private String password;
     private String firstName;
     private String lastName;
-    private String profileUrl;
+    private String profileURL;
     private String emailAddress;
     private LicenseBean license;
 
