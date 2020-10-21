@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TODOBean {
+public class TodoBean {
     private long id;
     private String text;
     private String status;

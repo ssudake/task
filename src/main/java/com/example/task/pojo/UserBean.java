@@ -17,5 +17,4 @@ public class UserBean {
     private String profileURL;
     private String emailAddress;
     private LicenseBean license;
-
 }

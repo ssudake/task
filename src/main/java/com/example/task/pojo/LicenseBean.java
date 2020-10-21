@@ -10,6 +10,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LicenseBean {
-    private String name;
     private long id;
+    private String name;
 }
