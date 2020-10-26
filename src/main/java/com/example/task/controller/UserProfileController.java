@@ -36,9 +36,15 @@ public class UserProfileController {
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+   @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseEntity addUser(@RequestBody UserBean userBean) {
-        System.out.println("******"+userBean.getFirstName());
+        System.out.println("******" + userBean.getFirstName());
+        return ResponseEntity.ok(userProfileService.addUser(userBean));
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public ResponseEntity updateUser(@RequestBody UserBean userBean) {
+        System.out.println("******" + userBean.getFirstName());
         return ResponseEntity.ok(userProfileService.addUser(userBean));
     }
 }

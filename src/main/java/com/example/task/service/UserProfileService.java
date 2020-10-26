@@ -13,6 +13,7 @@ public class UserProfileService {
 
     public User addUser(UserBean userBean) {
         User user = new User();
+        user.setId(userBean.getId());
         user.setFirstName(userBean.getFirstName());
         user.setLastName(userBean.getLastName());
         System.out.println(" setting...");
