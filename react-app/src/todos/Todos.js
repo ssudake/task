@@ -29,8 +29,8 @@ export const Todos = (props) => {
   };
 
   return (
-    <div>
-      <ul>
+    <div className={styles.container}>
+      <ul className={styles.list}>
         {todos.map((t) => (
           <li
             className={
@@ -39,6 +39,7 @@ export const Todos = (props) => {
             key={t.id}
             onClick={() => toggleTodo(t.id)}
           >
+            <input type="checkbox" checked={t.status === "completed"}></input>
             {t.text}
           </li>
         ))}
