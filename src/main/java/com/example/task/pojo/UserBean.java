@@ -12,6 +12,6 @@ public class UserBean {
     private String lastName;
     private String profileURL;
     private String emailAddress;
-    private long licenseId;
+    //private long licenseId;
     //private LicenseBean license;
 }
