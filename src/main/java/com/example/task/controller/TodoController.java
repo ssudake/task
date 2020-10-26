@@ -1,11 +1,14 @@
 package com.example.task.controller;
 
 import com.example.task.entity.TodoItem;
+import com.example.task.pojo.TodoBean;
 import com.example.task.repository.TodoRepository;
 import com.example.task.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @RestController
@@ -38,25 +41,32 @@ public class TodoController {
     }
 
     //CREATION
-    @PostMapping
-    public TodoItem create(@RequestBody TodoItem todoBean) {
-        return todoRepository.save(todoBean);
+    @PostMapping(value = "/add/{userId}")
+    public TodoItem create(@PathVariable long userId, @RequestBody TodoBean todoBean) throws ParseException {
+        TodoItem todoItem = new TodoItem();
+        todoItem.setUserId(userId);
+        todoItem.setId(todoBean.getId());
+        todoItem.setText(todoBean.getText());
+        todoItem.setScheduledAt(new SimpleDateFormat("dd/MM/yyyy").parse(todoBean.getScheduledDate()));
+        todoItem.setPriority(Integer.parseInt(todoBean.getPriority()));
+        todoItem.setCompleted(todoBean.getStatus().equals("true"));
+        return todoRepository.save(todoItem);
     }
 
     //UPDATE
-    @PutMapping()
-    public TodoItem update(@RequestBody TodoItem updatedTodoItem) {
-        TodoItem todoItem = todoRepository.findById(updatedTodoItem.getId());
-        todoItem.setId(updatedTodoItem.getId());
-        todoItem.setPriority(updatedTodoItem.getPriority());
-        todoItem.setText(updatedTodoItem.getText());
-        todoItem.setScheduledAt(updatedTodoItem.getScheduledAt());
-        todoItem.setCompleted(updatedTodoItem.isCompleted());
+    @PutMapping("/update")
+    public TodoItem update(@RequestBody TodoBean todoBean) throws ParseException {
+        TodoItem todoItem = todoRepository.findById(todoBean.getId());
+        todoItem.setId(todoBean.getId());
+        todoItem.setPriority(Integer.parseInt(todoBean.getPriority()));
+        todoItem.setText(todoBean.getText());
+        todoItem.setScheduledAt(new SimpleDateFormat("dd/MM/yyyy").parse(todoBean.getScheduledDate()));
+        todoItem.setCompleted(todoBean.getStatus().equals("true"));
         return todoRepository.save(todoItem);
     }
 
     //DELETE
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/delete/{id}")
     public void delete(@PathVariable long id) {
         todoRepository.deleteById(id);
     }
