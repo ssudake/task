@@ -15,4 +15,6 @@ public class UserBean {
     private String emailAddress;
     //private long licenseId;
     //private LicenseBean license;
+
+
 }
