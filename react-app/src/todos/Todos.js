@@ -9,12 +9,12 @@ const initialState = [
 export const Todos = (props) => {
   const [todos, setTodos] = useState(initialState);
 
-  //   useEffect(() => {
-  //     fetch("/todos")
-  //       .then((r) => r.json())
-  //       .then(setTodos(todos))
-  //       .catch((e) => alert(`Oops error occured: ${e.message}`));
-  //   }, []);
+  useEffect(() => {
+    fetch("/todos")
+        .then((r) => r.json())
+        .then(data => setTodos(data))
+        .catch((e) => alert(`Oops error occured: ${e.message}`));
+  }, []);
 
   const toggleTodo = (id) => {
     const updatedTodos = todos.map((t) => {
