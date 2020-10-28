@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 @RestController
@@ -45,11 +44,7 @@ public class TodoController {
     public TodoItem create(@PathVariable long userId, @RequestBody TodoBean todoBean) throws ParseException {
         TodoItem todoItem = new TodoItem();
         todoItem.setUserId(userId);
-        todoItem.setId(todoBean.getId());
-        todoItem.setText(todoBean.getText());
-        todoItem.setScheduledAt(new SimpleDateFormat("dd/MM/yyyy").parse(todoBean.getScheduledDate()));
-        todoItem.setPriority(Integer.parseInt(todoBean.getPriority()));
-        todoItem.setCompleted(todoBean.getStatus().equals("true"));
+        todoService.setTodoItemDetails(todoBean, todoItem);
         return todoRepository.save(todoItem);
     }
 
@@ -57,11 +52,7 @@ public class TodoController {
     @PutMapping("/update")
     public TodoItem update(@RequestBody TodoBean todoBean) throws ParseException {
         TodoItem todoItem = todoRepository.findById(todoBean.getId());
-        todoItem.setId(todoBean.getId());
-        todoItem.setPriority(Integer.parseInt(todoBean.getPriority()));
-        todoItem.setText(todoBean.getText());
-        todoItem.setScheduledAt(new SimpleDateFormat("dd/MM/yyyy").parse(todoBean.getScheduledDate()));
-        todoItem.setCompleted(todoBean.getStatus().equals("true"));
+        todoService.setTodoItemDetails(todoBean, todoItem);
         return todoRepository.save(todoItem);
     }
 
