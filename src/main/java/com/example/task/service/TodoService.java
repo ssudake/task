@@ -16,9 +16,9 @@ public class TodoService {
     public void setTodoItemDetails(TodoBean todoBean, TodoItem todoItem) throws ParseException {
         todoItem.setId(todoBean.getId());
         todoItem.setText(todoBean.getText());
-        todoItem.setScheduledAt(new SimpleDateFormat(DATE_FORMAT).parse(todoBean.getScheduledDate()));
-        todoItem.setPriority(Integer.parseInt(todoBean.getPriority()));
-        todoItem.setCompleted(STATUS_TRUE.equals(todoBean.getStatus()));
+        //todoItem.setScheduledAt(new SimpleDateFormat(DATE_FORMAT).parse(todoBean.getScheduledDate()));
+        //todoItem.setPriority(Integer.parseInt(todoBean.getPriority()));
+        //todoItem.setCompleted(STATUS_TRUE.equals(todoBean.getStatus()));
     }
 
 }

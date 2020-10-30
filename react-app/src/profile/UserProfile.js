@@ -11,8 +11,8 @@ export const UserPorfile = (props) => {
         <input
           type="text"
           value={firstname}
-          onChange={(e) => setFirstname(e.target.value)}
-        ></input>
+          onChange={(e) => setFirstname(e.target.value)}>
+        </input>
       </div>
     </div>
   );
